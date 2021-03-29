@@ -1,7 +1,7 @@
 
 require './lib/atm.rb'
 describe Atm do
-    let(:account) { instance_double('Account')} 
+    let(:account) { instance_double('Account')} #instance double creates "fake account"
 
     before do
         allow(account).to receive(:balance).and_return(100)
@@ -12,22 +12,16 @@ describe Atm do
         expect(subject.funds).to eq 1000
     end
 
-    it 'funds are withdrew at withdrawl' do
-        subject.withdrawl 50
+    it 'funds reduced at withdrawl' do
+        subject.withdrawl(50, account)
         expect(subject.funds).to eq 950
     end
 
     it 'allow withdrawl if the account has enough balance.' do
         expected_output = {status: true, message: 'success', date: Date.today, amount: 45}
-        expect(subject.withdrawl(45, account)).to eq expected_output
+        expect(subject.withdrawl( 45, account)).to eq expected_output
     end
 
-
-
-
-
-
-
-
 end
+
 
