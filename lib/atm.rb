@@ -18,7 +18,7 @@ class Atm
         when card_expired?(account.exp_date)
             { status: false, message: 'card expired', date: Date.today}
         when account_disabled?(account_status)
-            { status: false, message: 'account disabled', date: Date.today}
+           { status: false, message: 'account disabled', date: Date.today}
         else
             perform_transaction(amount, account)
         end
@@ -51,11 +51,11 @@ class Atm
     end
 
     def account_disabled?(account_status)
-         account_status == [:disabled]
-        end
-        
+         account_status == (:disabled)
     end
+
 end
+
 
 
 
