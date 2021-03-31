@@ -14,6 +14,15 @@ it 'check the length of the number'do
     expect(number_length).to eq 4
 end
 
+it 'is expected to have :active status on initialize' do
+    expect(subject.account_status).to eq :active
+end
+
+it 'deactivates account using the instance method' do
+    subject.deactivate
+    expect(subject.account_status).to eq :deactivated
+    end
+
 end
 
 
