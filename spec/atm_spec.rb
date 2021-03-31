@@ -1,4 +1,4 @@
-require './lib/atm.rb'
+require './lib/atm'
 
 
 describe Atm do
@@ -7,7 +7,7 @@ describe Atm do
     before do
         allow(account).to receive(:balance).and_return(100)
         allow(account).to receive(:balance=)
-    end
+    end 
     
     it 'has 1000 on initialize' do
         expect(subject.funds).to eq 1000
@@ -15,7 +15,7 @@ describe Atm do
 
     it 'reject withdrawl if account has insufficient funds' do
         expected_output = {status: false, message: 'insufficient funds', date: Date.today}
-        expect(subject.withdrawl(105, '1234', account, :active)).to eq expected_output
+        expect(subject.withdrawl(105, '4897', account, :active)).to eq expected_output
     end
 
     it 'funds reduced at withdrawl' do
