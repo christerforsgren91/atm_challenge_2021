@@ -3,27 +3,34 @@ require './lib/account.rb'
 
 class Person
     
-    attr_accessor :cash, :account
-    attr_reader :name
+    attr_accessor :cash, :account, :name
+    attr_reader 
 
     def initialize (attrs = {})
-    @name = 'Thomas'
+    @name = set_name(attrs[:name])
     @cash = 0
-    @account = Account.new 
+    @account = nil
     end
     
     def noname_error
     raise 'A name is required'
     end
 
+    def create_account
+        @account = Account.new(owner: self)
+    end
+
 end
 
 private 
 
-#def set_account(obj)
-#    obj == nil ? missing_account : @account = obj
-#end
+def set_name(name)
+    name == nil ? missing_name : name
+end
 
+def missing_name
+    raise ArgumentError, 'A name is required'
+end
 #def missing_account
 #    raise "An account is required"
 #end
