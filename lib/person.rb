@@ -16,8 +16,21 @@ class Person
     raise 'A name is required'
     end
 
+    def no_account_error
+        raise 'No Account'
+    end
+
+
     def create_account
         @account = Account.new(owner: self)
+    end
+
+    def deposit (amount) 
+        if @account == nil
+            RuntimeError
+        else
+        @amount =+ @cash
+        end
     end
 
 end
@@ -31,6 +44,6 @@ end
 def missing_name
     raise ArgumentError, 'A name is required'
 end
-#def missing_account
-#    raise "An account is required"
-#end
+
+
+
