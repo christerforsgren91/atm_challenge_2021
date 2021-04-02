@@ -53,18 +53,16 @@ def withdraw_funds(args)
         pin = @pin_code
         account = @account
         account_status = @account_status
-        args[:atm] == nil ? missing_atm : atm = args[:atm]
-
-        if @account == nil 
-            raise RuntimeError, 'No account'
-        elsif [:atm] == nil
-            raise RuntimeError, 'No ATM'
-        else
-            response = atm.withdraw(amount, pin, account, account_status)
-            response[:status] == true ? increase_cash(response) : response
-        end
+        args[:atm] == nil ? missing_atm : atm = args[:atm] 
+        
+        response = atm.withdraw(amount, pin, account, account_status)
+        response[:status] == true ? increase_cash(response) : response
+        
 end
 
+    def increase_cash(response)
+        @cash += response[:amount]
+    end
 
     def set_name(name)
         name == nil ? missing_name : name
