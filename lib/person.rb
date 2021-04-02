@@ -29,7 +29,8 @@ class Person
         if @account == nil
             raise RuntimeError, 'No account'
         else
-        @amount += @balance
+        @cash -= amount
+        @account.balance += amount
         end
     end
 
