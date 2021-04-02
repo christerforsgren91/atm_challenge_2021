@@ -1,4 +1,5 @@
 require 'date'
+require './lib/atm.rb'
 
 class Account 
 
@@ -11,7 +12,7 @@ class Account
         @exp_date = '03/26'
         @pin_code = rand(1000..9999)
         @account_status = :active
-        @balance = 0
+        @balance = 0 
         set_owner(attrs[:owner])
         
     end
