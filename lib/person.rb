@@ -53,7 +53,7 @@ def withdraw_funds(args)
         pin = @pin_code
         account = @account
         account_status = @account_status
-        atm = args[:atm]
+        args[:atm] == nil ? missing_atm : atm = args[:atm]
 
         if @account == nil 
             raise RuntimeError, 'No account'
@@ -63,21 +63,23 @@ def withdraw_funds(args)
             response = atm.withdraw(amount, pin, account, account_status)
             response[:status] == true ? increase_cash(response) : response
         end
+end
+
+
+    def set_name(name)
+        name == nil ? missing_name : name
     end
 
+    def missing_name
+        raise ArgumentError, 'A name is required'
+    end
 
-def set_name(name)
-    name == nil ? missing_name : name
-end
+    def pin 
+        @pin = @pin_code
+    end
 
-def missing_name
-    raise ArgumentError, 'A name is required'
-end
-
-def pin 
-    @pin = @pin_code
-end
-
-
+    def missing_atm
+        raise RuntimeError, 'ATM required'
+    end
 
 

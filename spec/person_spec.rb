@@ -51,6 +51,11 @@ describe Person do
             command = lambda { subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm)}
             expect(command.call).to be_truthy
         end
+
+        it 'withdraw is expected to raise an error if no ATM is padded in' do
+            command = lambda { subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account)}
+            expect {command.call}.to raise_error 'ATM required'
+        end
     end
 
     describe 'can not manage funds if no account created' do
