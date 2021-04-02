@@ -2,7 +2,7 @@ require 'date'
 
 class Account 
 
-    attr_accessor :exp_date, :account_status 
+    attr_accessor :exp_date, :account_status, :balance
     attr_reader :pin_code, :owner
 
     STANDARD_VALIDILITY_YRS = 5 
@@ -11,6 +11,7 @@ class Account
         @exp_date = '03/26'
         @pin_code = rand(1000..9999)
         @account_status = :active
+        @balance = 0
         set_owner(attrs[:owner])
         
     end

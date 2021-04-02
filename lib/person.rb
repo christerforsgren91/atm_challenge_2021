@@ -27,9 +27,9 @@ class Person
 
     def deposit (amount) 
         if @account == nil
-            RuntimeError
+            raise RuntimeError, 'No account'
         else
-        @amount =+ @cash
+        @amount += @balance
         end
     end
 
