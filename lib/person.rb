@@ -49,11 +49,12 @@ end
 private 
 
 def withdraw_funds(args)
+        args[:atm] == nil ? missing_atm : atm = args[:atm]
+        
         amount = args[:amount]
-        pin = @pin_code
         account = @account
         account_status = @account_status
-        args[:atm] == nil ? missing_atm : atm = args[:atm] 
+        pin = args[:pin] 
         
         response = atm.withdraw(amount, pin, account, account_status)
         response[:status] == true ? increase_cash(response) : response
@@ -76,8 +77,6 @@ end
         @pin = @pin_code
     end
 
-    def missing_atm
-        raise RuntimeError, 'ATM required'
-    end
+    
 
 
