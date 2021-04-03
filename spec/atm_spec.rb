@@ -2,7 +2,7 @@ require './lib/atm'
 
 
 describe Atm do
-    let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/21', account_status: :active)} 
+    let(:account) { instance_double('Account', pin_code: '1234', exp_date: '05/21', account_status: :active)} 
 
     before do
         allow(account).to receive(:balance).and_return(100)

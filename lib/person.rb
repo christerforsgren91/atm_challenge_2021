@@ -42,27 +42,23 @@ class Person
             withdraw_funds(args)
         end
     end
-    
-
 end
 
-private 
+    private 
 
-def withdraw_funds(args)
-        args[:atm] == nil ? missing_atm : atm = args[:atm]
-        
-        amount = args[:amount]
-        account = @account
-        account_status = @account_status
-        pin = args[:pin] 
-        
-        response = atm.withdraw(amount, pin, account, account_status)
-        response[:status] == true ? increase_cash(response) : response
-        
-end
+    def withdraw_funds(args)
+            args[:atm] == nil ? missing_atm : atm = args[:atm]
+            account = @account
+            amount = args[:amount]
+            pin = args[:pin] 
+            account_status = @account_status
+            response = atm.withdraw(amount, pin, account, account_status) 
+            response[:status] == true ? increase_cash(amount) : response
+            response
+        end
 
-    def increase_cash(response)
-        @cash += response[:amount]
+    def increase_cash(amount)
+        @cash += amount
     end
 
     def set_name(name)
@@ -76,6 +72,7 @@ end
     def pin 
         @pin = @pin_code
     end
+
 
     
 
